@@ -1,47 +1,47 @@
 from threading import Lock
 
-from PyQt5.QtWidgets import QMainWindow, QLabel, QGridLayout
-from PyQt5.QtCore import pyqtSignal, QObject
+from PyQt5.QtWidgets import QMainWindow, QWidget, QPushButton, QVBoxLayout
+from PyQt5.QtCore import pyqtSignal, QObject, Qt, QEvent
 
 
-class Signals(QObject):
-    render = pyqtSignal()
+# TODO: посмотреть как будет выглядеть select
+# TODO: пофиксить обрытный порядок выбора кнопок
+class Label(QPushButton):
+    def __init__(self, text: str, parent: QWidget):
+        super().__init__(text, parent)
+        self.setStyleSheet("color:#eeeeee;")
 
 
 class Window(QMainWindow):
-    def __init__(self, width, height):
+
+    render_signal = pyqtSignal(int, int)
+    add_signal = pyqtSignal(str)
+
+    def __init__(self):
         super().__init__()
-        
+        centralWidget = QWidget()
+        centralWidget.setStyleSheet("background-color:#222222;")
         self.lock = Lock()
         self.labels = []
-        self.buffer = []
-        self.signals = Signals()
-        self.layout = QGridLayout()
+        self.layout = QVBoxLayout()
 
-        self.setWindowTitle('EasyClipboard')
-        self.resize(width, height)
-        self.setLayout(self.layout)
-        self.signals.render.connect(self.show_normal)
-    
-    def show_window(self, x, y):
-        # TODO: получать координаты указателя перед вызовом этой функции 
+        self.setWindowFlag(Qt.FramelessWindowHint)
+        centralWidget.setLayout(self.layout)
+        self.setCentralWidget(centralWidget)
+        self.render_signal.connect(self.render)
+        self.add_signal.connect(self.add_label)
+
+    def render(self, x: int, y: int):
+        for label in self.labels: 
+            self.layout.removeWidget(label)
+        with self.lock:
+            self.labels = self.labels[:15]
+            for label in self.labels:
+                self.layout.addWidget(label)
         self.move(x, y)
         self.show()
 
-    def show_minimized(self):
-        self.showMinimized()
-
-    def show_normal(self):
-        self.showNormal()
+    def add_label(self, text: str):
+        new_label = Label(text, self)
         with self.lock:
-            print(self.buffer)
-            buffer_length = len(self.buffer)
-            labels_length = len(self.labels)
-            if (buffer_length > labels_length):
-                for i in range(labels_length, buffer_length):
-                    print(i, self.buffer[i])
-                    label = QLabel(self.buffer[i], self)
-                    #label.move(10, 20 * i)
-                    self.layout.addWidget(label, i, 1, 1, 1)
-                    ###
-                    self.labels.append(label)
+            self.labels.insert(0, new_label)

@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
-import keyboard
-#import win32gui
 import sys
-from gui import Window
+
+import keyboard
+import win32gui
 import clipboard
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import QThread
+
+from gui import Window
+
+WINDOW = None
+
 
 class KeyboardHandler(QThread):
     def __init__(self):
@@ -19,25 +24,24 @@ class KeyboardHandler(QThread):
         keyboard.add_hotkey('ctrl+shift+v', show_buffer, suppress=True)
         keyboard.wait()
 
-WINDOW = None
 
 def read_clipboard():
     data = clipboard.paste()
     with WINDOW.lock:
-        WINDOW.buffer.append(data)
+        WINDOW.add_signal.emit(data)
+
 
 def show_buffer():
-    WINDOW.signals.render.emit()
+    x,y = win32gui.GetCursorInfo()[2]
+    WINDOW.render_signal.emit(x, y)
+
 
 def start_gui():
     global WINDOW
     app = QApplication(sys.argv)
-    WINDOW = Window(250, 200)
-
-    #flags, hcursor, (x,y) = win32gui.GetCursorInfo()
-    WINDOW.show_window(0, 0)
-    WINDOW.show_minimized()
+    WINDOW = Window()
     app.exec_()
+
 
 def main():
     keyboard_hangler = KeyboardHandler()
