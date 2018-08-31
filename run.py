@@ -1,5 +1,6 @@
+#!/usr/bin/env python3
 import keyboard
-import win32gui
+#import win32gui
 import sys
 from gui import Window
 import clipboard
@@ -19,31 +20,29 @@ class KeyboardHandler(QThread):
         keyboard.wait()
 
 WINDOW = None
-BUFFER = []
 
 def read_clipboard():
     data = clipboard.paste()
-    BUFFER.append(data)
+    with WINDOW.lock:
+        WINDOW.buffer.append(data)
 
 def show_buffer():
-    WINDOW.show_normal(BUFFER)
+    WINDOW.signals.render.emit()
 
 def start_gui():
     global WINDOW
     app = QApplication(sys.argv)
     WINDOW = Window(250, 200)
 
-    flags, hcursor, (x,y) = win32gui.GetCursorInfo()
-    WINDOW.show_window(x, y, BUFFER)
+    #flags, hcursor, (x,y) = win32gui.GetCursorInfo()
+    WINDOW.show_window(0, 0)
     WINDOW.show_minimized()
     app.exec_()
 
 def main():
     keyboard_hangler = KeyboardHandler()
     keyboard_hangler.start()
-    print('main')
     start_gui()
-    print('exit')
 
 if __name__ == '__main__':
     main()
