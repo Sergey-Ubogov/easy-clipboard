@@ -14,21 +14,20 @@ class Window(QListWidget):
 
     def __init__(self):
         super().__init__()
-        self.setStyleSheet("background-color:#222222;color:#eeeeee;")
+        self.setStyleSheet("background-color:#222;color:#eee;")
         self.lock = Lock()
         self.buffer = []
 
         self.setWindowFlag(Qt.FramelessWindowHint)
         self.render_signal.connect(self.render)
         self.add_signal.connect(self.add_label)
+        self.itemClicked.connect(self.item_changed)
         self.itemActivated.connect(self.item_changed)
-        self.focusOutEvent = lambda _: self.hide()
+        self.focusOutEvent = self.onFocusOutEvent
 
-    def sizeHint(self):
-        s = QSize()
-        s.setHeight(192)
-        s.setWidth(256)
-        return s
+    def onFocusOutEvent(self, event):
+        super().focusOutEvent(event)
+        self.hide()
 
     def render(self, x: int, y: int):
         self.clear()
