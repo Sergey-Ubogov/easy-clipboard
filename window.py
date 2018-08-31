@@ -2,7 +2,7 @@ from threading import Lock
 
 import keyboard
 from PyQt5.QtWidgets import QListWidget, QListWidgetItem, QAbstractItemView
-from PyQt5.QtCore import pyqtSignal, QObject, Qt
+from PyQt5.QtCore import pyqtSignal, QObject, Qt, QSize
 
 from logic import imitate_paste
 
@@ -22,6 +22,13 @@ class Window(QListWidget):
         self.render_signal.connect(self.render)
         self.add_signal.connect(self.add_label)
         self.itemActivated.connect(self.item_changed)
+        self.focusOutEvent = lambda _: self.hide()
+
+    def sizeHint(self):
+        s = QSize()
+        s.setHeight(192)
+        s.setWidth(256)
+        return s
 
     def render(self, x: int, y: int):
         self.clear()
