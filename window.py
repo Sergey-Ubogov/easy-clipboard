@@ -37,6 +37,7 @@ class Window(QListWidget):
                 self.addItem(text)
         self.move(x, y)
         self.show()
+        self.activateWindow()
 
     def add_label(self, text: str):
         with self.lock:
