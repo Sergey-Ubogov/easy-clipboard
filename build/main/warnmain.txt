@@ -1,0 +1,41 @@
+missing module named resource - imported by posix, C:\Users\Sergey\Desktop\easy-clipboard\src\main.py
+missing module named posix - imported by os, C:\Users\Sergey\Desktop\easy-clipboard\src\main.py
+missing module named _posixsubprocess - imported by subprocess, C:\Users\Sergey\Desktop\easy-clipboard\src\main.py
+missing module named 'org.python' - imported by pickle, C:\Users\Sergey\Desktop\easy-clipboard\src\main.py, xml.sax
+missing module named readline - imported by cmd, code, pdb, C:\Users\Sergey\Desktop\easy-clipboard\src\main.py
+excluded module named _frozen_importlib - imported by importlib, importlib.abc, C:\Users\Sergey\Desktop\easy-clipboard\src\main.py
+missing module named _frozen_importlib_external - imported by importlib._bootstrap, importlib, importlib.abc, C:\Users\Sergey\Desktop\easy-clipboard\src\main.py
+missing module named _winreg - imported by platform, C:\Users\Sergey\Desktop\easy-clipboard\src\main.py
+missing module named _scproxy - imported by urllib.request
+missing module named java - imported by platform, C:\Users\Sergey\Desktop\easy-clipboard\src\main.py
+missing module named 'java.lang' - imported by platform, C:\Users\Sergey\Desktop\easy-clipboard\src\main.py, xml.sax._exceptions
+missing module named vms_lib - imported by platform, C:\Users\Sergey\Desktop\easy-clipboard\src\main.py
+missing module named termios - imported by tty, getpass, C:\Users\Sergey\Desktop\easy-clipboard\src\main.py
+missing module named grp - imported by shutil, tarfile, pathlib, C:\Users\Sergey\Desktop\easy-clipboard\src\main.py
+missing module named org - imported by copy, C:\Users\Sergey\Desktop\easy-clipboard\src\main.py
+missing module named pwd - imported by posixpath, shutil, tarfile, http.server, webbrowser, pathlib, getpass, C:\Users\Sergey\Desktop\easy-clipboard\src\main.py, netrc
+missing module named ce - imported by os, C:\Users\Sergey\Desktop\easy-clipboard\src\main.py
+missing module named _dummy_threading - imported by dummy_threading, C:\Users\Sergey\Desktop\easy-clipboard\src\main.py
+missing module named 'Xlib.XK' - imported by pyautogui._pyautogui_x11
+missing module named 'Xlib.ext' - imported by pyautogui._pyautogui_x11
+missing module named Xlib - imported by pyautogui._pyautogui_x11
+missing module named AppKit - imported by pyperclip, keyboard._darwinkeyboard, libs.keyboard._darwinkeyboard, pyautogui._pyautogui_osx
+missing module named Quartz - imported by keyboard._darwinkeyboard, libs.keyboard._darwinkeyboard, pyautogui._pyautogui_osx
+missing module named PIL._imagingagg - imported by PIL, PIL.ImageDraw
+missing module named numpy - imported by PIL.ImageFilter, pyscreeze
+missing module named cv2 - imported by pyscreeze
+missing module named olefile - imported by PIL.FpxImagePlugin, PIL.MicImagePlugin
+missing module named Tkinter - imported by pymsgbox, PIL.ImageTk
+missing module named UserDict - imported by PIL.PdfParser
+missing module named 'PySide.QtCore' - imported by PIL.ImageQt
+missing module named 'PyQt4.QtCore' - imported by PIL.ImageQt
+missing module named 'PyQt4.QtGui' - imported by PIL.ImageQt
+missing module named pathlib2 - imported by PIL.Image
+missing module named cffi - imported by PIL.Image, PIL.PyAccess, PIL.ImageTk
+missing module named __builtin__ - imported by PIL.Image
+missing module named fcntl - imported by keyboard._nixcommon, libs.keyboard._nixcommon
+missing module named Queue - imported by keyboard, keyboard._nixcommon, keyboard._generic, libs.keyboard, libs.keyboard._nixcommon, libs.keyboard._generic
+missing module named Foundation - imported by pyperclip
+missing module named PyQt4 - imported by pyperclip
+missing module named qtpy - imported by pyperclip
+missing module named gtk - imported by pyperclip
